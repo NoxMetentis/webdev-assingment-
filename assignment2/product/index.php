@@ -35,6 +35,7 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 
 	$total =0;
 	$b = 0;
+
 	foreach ($_SESSION["cart_products"] as $cart_itm)
 	{
 		$product_name = $cart_itm["product_name"];
@@ -69,20 +70,22 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 
 <!-- Products List Start -->
 <?php
-$results = $mysqli->query("SELECT product_code, product_name, product_desc, product_img_name, price FROM products ORDER BY id ASC");
+$statement = db()->query("SELECT product_code, product_name, product_desc, product_img_name, price FROM products ORDER BY id ASC");
+$results =  $statement->fetchall(PDO::FETCH_ASSOC);
+
 if($results){ 
 $products_item = '<ul class="products">';
 //fetch results set as object and output HTML
-while($obj = $results->fetch_object())
+foreach ($results as $row)
 {
 $products_item .= <<<EOT
 	<li class="product">
 	<form method="post" action="cart_update.php">
-	<div class="product-content"><h3>{$obj->product_name}</h3>
-	<div class="product-thumb"><img src="images/{$obj->product_img_name}"></div>
-	<div class="product-desc">{$obj->product_desc}</div>
+	<div class="product-content"><h3>{$row['product_name']}</h3>
+	<div class="product-thumb"><img src="images/{$row['product_img_name']}"></div>
+	<div class="product-desc">{$row['product_desc']}</div>
 	<div class="product-info">
-	Price {$currency}{$obj->price} 
+	Price {$currency}{$row['price']} 
 	
 	<fieldset>
 	
@@ -100,7 +103,7 @@ $products_item .= <<<EOT
 	</label>
 	
 	</fieldset>
-	<input type="hidden" name="product_code" value="{$obj->product_code}" />
+	<input type="hidden" name="product_code" value="{$row['product_code']}" />
 	<input type="hidden" name="type" value="add" />
 	<input type="hidden" name="return_url" value="{$current_url}" />
 	<div align="center"><button type="submit" class="add_to_cart">Add</button></div>
@@ -112,6 +115,8 @@ EOT;
 $products_item .= '</ul>';
 echo $products_item;
 }
+
+
 ?>    
 <!-- Products List End -->
 <?php view('footer', ['title' => 'Product']) ?>
