@@ -222,8 +222,8 @@ p{
     display: flex;
 flex-direction: column;
 justify-content: center;
-margin-top:0px;
-margin-bottom:250px;
+margin-top:170px;
+margin-bottom:40px;
 margin-left: 200px;
 margin-right:200px ;
 padding-bottom: 0px;
@@ -235,7 +235,7 @@ padding-bottom: 0px;
     display: flex;
 flex-direction: column;
 justify-content: center;
-margin-top:200px;
+margin-top:10px;
 margin-bottom:0px;
 margin-left: 200px;
 margin-right:200px ;
@@ -254,7 +254,7 @@ padding-bottom: 0px;
 
 /* Next & previous buttons */
 .prev, .next {
-  cursor:crosshair;
+  cursor: pointer;
   position: absolute;
   top: 50%;
   width: auto;
