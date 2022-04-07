@@ -19,9 +19,9 @@
 					<ul>
 						<li><b>The Company</b></li>
 					
-						<a href="/assignment2/company#Story"><li>Our Story</li></a>
+						<a href="#Story"><li>Our Story</li></a>
 						
-						<a href="/assignment2/company#Slideshow"><li>The Gallery</li></a>
+						<a href="#Gallery"><li>The Gallery</li></a>
 						
 					</ul>
 				<div class=footercontent3></div>
